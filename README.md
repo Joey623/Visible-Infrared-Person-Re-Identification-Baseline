@@ -19,7 +19,7 @@
  
  *Wu A, Zheng W S, Yu H X, et al. RGB-infrared cross-modality person re-identification[C]//Proceedings of the IEEE international conference on computer vision. 2017: 5380-5389.*
  
- If you want to train the SYSU-MM01, run the ``pre_process_sysu.py``.
+ If you want to train the SYSU-MM01, run the ``pre_process_sysu.py`` firstly and then run the ``train.py``.
  
  ## Train
  Set line 27 of ``train.py`` to your dataset path and run it.
