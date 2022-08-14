@@ -24,7 +24,7 @@ from models import BaselineResnet
 
 parser = argparse.ArgumentParser(description='Cross-Modality ReID Baseline')
 # various path
-parser.add_argument('--data_root', type=str, default="D:\\Datasets\\Re-ID\\SYSU-MM01\\", help='dataset root path')
+parser.add_argument('--data_root', type=str, default="", help='dataset root path')
 parser.add_argument('--dataset', type=str, default="sysu", help='dataset name: regdb or sysu')
 parser.add_argument('--save', type=str, default=".\\checkpoints\\", help='model and log saving path')
 parser.add_argument('--resume', type=str, default='', help='resume from checkpoint')
