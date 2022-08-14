@@ -27,4 +27,4 @@
  ## Footer
  This project is being continuously updated.
  
- Leave a star in GitHub, give a clap in Medium and share this guide if you found this helpful.
+ Leave a star in GitHub if you found this helpful.
