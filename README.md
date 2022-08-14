@@ -1,5 +1,5 @@
 # Visible-Infrared-Person-Re-Identification-Baseline
- a baseline(ResNet50) code for visible-infrared person Reid.\n
+ a baseline(ResNet50) code for visible-infrared person Reid.
  
  continuous update...
  
@@ -25,6 +25,6 @@
  Set line 27 of ``train.py`` to your dataset path and run it.
  
  ## Footer
- This project is being continuously updated.\n
+ This project is being continuously updated.
  
  Leave a star in GitHub, give a clap in Medium and share this guide if you found this helpful.
