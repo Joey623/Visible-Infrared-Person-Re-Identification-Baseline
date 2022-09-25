@@ -153,6 +153,7 @@ def main():
     if args.model == 'resnet50':
         model = BaselineResnet(num_classes, pretrained=True, last_stride=args.last_stride,
                                dropout_rate=args.dropout_rate)
+    # add vit
     elif args.model == 'vit':
         model = BaselineVit(num_classes, pretrained=True, dropout_rate=args.dropout_rate)
     else:
