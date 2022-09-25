@@ -1,5 +1,7 @@
 # Visible-Infrared-Person-Re-Identification-Baseline
  a baseline(ResNet50) code for visible-infrared person Reid.
+ ### update
+ add vit.
  
  continuous update...
  
