@@ -46,7 +46,6 @@ class BaselineResnet(nn.Module):
 class BaselineVit(nn.Module):
     def __init__(self, num_classes, pretrained=False, dropout_rate=0.0):
         super(BaselineVit, self).__init__()
-        # you can download the .pth file in
         self.model_path = 'D:/Datasets/pretrain-models/imagenet/jx_vit_base_p16_224-80ecf9dd.pth'
         self.pretrained = pretrained
         self.num_classes = num_classes
