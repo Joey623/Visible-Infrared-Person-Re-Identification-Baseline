@@ -20,26 +20,29 @@ from utils import eval_sysu, eval_regdb
 from datasets import process_query_sysu, process_gallery_sysu, process_test_regdb
 from datasets import SYSUData, RegDBData, TestData
 from losses import TripletLoss, CrossEntropyLabelSmooth, SP, CMMD
-from models import BaselineResnet
+from models import BaselineResnet, BaselineVit
+
+import warnings
+warnings.filterwarnings("ignore")
 
 parser = argparse.ArgumentParser(description='Cross-Modality ReID Baseline')
 # various path
 parser.add_argument('--data_root', type=str, default="", help='dataset root path')
 parser.add_argument('--dataset', type=str, default="sysu", help='dataset name: regdb or sysu')
-parser.add_argument('--save', type=str, default=".\\checkpoints\\", help='model and log saving path')
+parser.add_argument('--save', type=str, default="", help='model and log saving path')
 parser.add_argument('--resume', type=str, default='', help='resume from checkpoint')
 parser.add_argument('--note', type=str, default='resnet50', help='note for this run')
-
+parser.add_argument('--model', type=str, default='resnet50', help='choose baseline:resnet50 or vit')
 # training hyper-parameters
 parser.add_argument('--print_freq', type=float, default=20, help='print iteration frequency')
 parser.add_argument('--test_freq', type=float, default=10, help='test and save epoch frequency')
-parser.add_argument('--workers', type=int, default=0, help='number of workers to load dataset')
+parser.add_argument('--workers', type=int, default=4, help='number of workers to load dataset')
 parser.add_argument('--epochs', type=int, default=120, help='num of total training epochs')
 parser.add_argument('--steps', type=str, default='[40, 70]', help='steps for lr decreasing')
 parser.add_argument('--gamma', type=float, default=0.1, help='scale factor for lr decreasing')
 parser.add_argument('--warmup_epochs', type=int, default=10, help='warmup epochs')
 parser.add_argument('--warmup_factor', type=float, default=0.01, help='warmup factor')
-parser.add_argument('--batch_size', type=int, default=16, help='training batch size')
+parser.add_argument('--batch_size', type=int, default=64, help='training batch size')
 parser.add_argument('--test_batch', type=int, default=128, help='testing batch size')
 parser.add_argument('--num_pos', type=int, default=4, help='num of pos per identity in each modality')
 parser.add_argument('--lr', type=float, default=0.01, help='init learning rate')
@@ -147,7 +150,13 @@ def main():
     print('Data Loading Time: {}s'.format(int(round(time.time() - end))))
 
     print('==> Building model......')
-    model = BaselineResnet(num_classes, pretrained=True, last_stride=args.last_stride, dropout_rate=args.dropout_rate)
+    if args.model == 'resnet50':
+        model = BaselineResnet(num_classes, pretrained=True, last_stride=args.last_stride,
+                               dropout_rate=args.dropout_rate)
+    elif args.model == 'vit':
+        model = BaselineVit(num_classes, pretrained=True, dropout_rate=args.dropout_rate)
+    else:
+        print("need get resnet50 or vit, but got {}".format(args.model))
     if args.cuda:
         model = torch.nn.DataParallel(model).cuda()
     # exponential moving average
