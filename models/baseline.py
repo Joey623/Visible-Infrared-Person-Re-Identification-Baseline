@@ -44,6 +44,7 @@ class BaselineResnet(nn.Module):
             return global_feat, feat
 
 class BaselineVit(nn.Module):
+    feat_dim = 768
     def __init__(self, num_classes, pretrained=False, dropout_rate=0.0):
         super(BaselineVit, self).__init__()
         self.model_path = 'D:/Datasets/pretrain-models/imagenet/jx_vit_base_p16_224-80ecf9dd.pth'
